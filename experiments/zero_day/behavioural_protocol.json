@@ -1,0 +1,84 @@
+{
+  "clusters": {
+    "aci_iot_2023": {
+      "B1": [
+        "OS Scan",
+        "Ping Sweep",
+        "Port Scan",
+        "Vulnerability Scan"
+      ],
+      "B2": [
+        "Dictionary Attack",
+        "SYN Flood",
+        "Slowloris"
+      ],
+      "B3": [
+        "DNS Flood",
+        "UDP Flood"
+      ],
+      "B4": [
+        "ICMP Flood"
+      ]
+    },
+    "cic_iot_2023": {
+      "B1": [
+        "Backdoor Malware",
+        "Browser Hijacking",
+        "Command Injection",
+        "DNS Spoofing",
+        "Dictionary Brute Force",
+        "MITM-ARP Spoofing",
+        "Recon-Host Discovery",
+        "Recon-OS Scan",
+        "Recon-Ping Sweep",
+        "Recon-Port Scan",
+        "SQL Injection",
+        "Uploading Attack",
+        "Vulnerability Scan",
+        "XSS"
+      ],
+      "B2": [
+        "DDoS-ACK Fragmentation",
+        "DDoS-ICMP Flood",
+        "DDoS-ICMP Fragmentation",
+        "DDoS-TCP Flood",
+        "DDoS-UDP Flood",
+        "DDoS-UDP Fragmentation",
+        "DoS-TCP Flood",
+        "DoS-UDP Flood",
+        "Mirai-GREETH Flood",
+        "Mirai-GREIP Flood",
+        "Mirai-UDPPlain"
+      ],
+      "B3": [
+        "DDoS-SYN Flood",
+        "DDoS-SynonymousIP Flood",
+        "DoS-SYN Flood"
+      ],
+      "B4": [
+        "DDoS-HTTP Flood",
+        "DDoS-PSHACK Flood",
+        "DDoS-Slowloris",
+        "DoS-HTTP Flood"
+      ],
+      "B5": [
+        "DDoS-RSTFIN Flood"
+      ]
+    }
+  },
+  "validation": {
+    "n": 27,
+    "pearson": -0.31396312659100545,
+    "spearman": -0.3552301117084552,
+    "slope": -0.01780148110140297,
+    "intercept": 0.9551689163525743,
+    "distance_range": [
+      0.21108491866850637,
+      6.562668607196269
+    ],
+    "score_range": [
+      0.5940866100652041,
+      0.9997292158608554
+    ]
+  }
+}

@@ -1,0 +1,31 @@
+i,truth,agent,agent_ok,known_class,rf,aggregate,steps,tools,untrusted_fraction,seconds,error,confidence
+2585,Benign,Benign,True,True,Benign,Benign,5,"classify_flow,classify_flow,classify_flow,aggregate_classifiers",0.2274,20.1,,high
+702,Benign,Benign,True,True,Benign,Benign,5,"classify_flow,classify_flow,classify_flow,aggregate_classifiers",0.2397,15.8,,high
+2736,Benign,Benign,True,True,Benign,Benign,5,"search_memory,classify_flow,classify_flow,classify_flow",0.3264,17.2,,high
+3237,DNS Flood,DNS Flood,True,True,DNS Flood,DNS Flood,3,"classify_flow,aggregate_classifiers",0.2663,10.4,,high
+1242,DNS Flood,DNS Flood,True,True,DNS Flood,DNS Flood,5,"classify_flow,classify_flow,classify_flow,aggregate_classifiers",0.2242,18.1,,high
+32,DNS Flood,DNS Flood,True,True,DNS Flood,DNS Flood,5,"classify_flow,classify_flow,classify_flow,aggregate_classifiers",0.226,18.1,,high
+3763,Dictionary Attack,Dictionary Attack,True,True,Dictionary Attack,Dictionary Attack,4,"classify_flow,classify_flow,aggregate_classifiers",0.2407,14.1,,high
+2968,Dictionary Attack,Dictionary Attack,True,True,Dictionary Attack,Dictionary Attack,5,"classify_flow,classify_flow,classify_flow,aggregate_classifiers",0.2253,17.6,,high
+1298,Dictionary Attack,Dictionary Attack,True,True,Dictionary Attack,Dictionary Attack,4,"classify_flow,classify_flow,aggregate_classifiers",0.2521,13.5,,high
+1463,ICMP Flood,ICMP Flood,True,True,ICMP Flood,ICMP Flood,4,"classify_flow,classify_flow,aggregate_classifiers",0.2569,13.0,,high
+3874,ICMP Flood,ICMP Flood,True,True,ICMP Flood,ICMP Flood,5,"classify_flow,classify_flow,classify_flow,aggregate_classifiers",0.2307,17.5,,high
+3214,ICMP Flood,ICMP Flood,True,True,ICMP Flood,ICMP Flood,4,"classify_flow,classify_flow,aggregate_classifiers",0.2517,13.5,,high
+2228,OS Scan,OS Scan,True,True,OS Scan,OS Scan,5,"search_memory,classify_flow,classify_flow,classify_flow",0.3488,17.2,,high
+2135,OS Scan,OS Scan,True,True,OS Scan,OS Scan,4,"classify_flow,classify_flow,aggregate_classifiers",0.2481,14.0,,high
+3527,OS Scan,OS Scan,True,True,OS Scan,OS Scan,5,"classify_flow,classify_flow,search_memory,aggregate_classifiers",0.3323,17.7,,high
+3305,Ping Sweep,Ping Sweep,True,True,Ping Sweep,Ping Sweep,4,"classify_flow,classify_flow,aggregate_classifiers",0.248,14.0,,high
+4702,Ping Sweep,Ping Sweep,True,True,Ping Sweep,Ping Sweep,4,"classify_flow,classify_flow,aggregate_classifiers",0.245,14.2,,high
+5296,Ping Sweep,Ping Sweep,True,True,Ping Sweep,Ping Sweep,5,"classify_flow,classify_flow,classify_flow,aggregate_classifiers",0.2213,18.7,,high
+441,Port Scan,Port Scan,True,True,Port Scan,Port Scan,4,"classify_flow,classify_flow,aggregate_classifiers",0.2479,13.7,,high
+5966,Port Scan,Port Scan,True,True,Port Scan,Port Scan,5,"classify_flow,classify_flow,random_forest,aggregate_classifiers",0.226,18.0,,high
+4678,Port Scan,Port Scan,True,True,Port Scan,Port Scan,4,"classify_flow,classify_flow,aggregate_classifiers",0.2426,14.4,,high
+3096,SYN Flood,SYN Flood,True,True,SYN Flood,SYN Flood,5,"classify_flow,classify_flow,classify_flow,aggregate_classifiers",0.2404,16.2,,high
+4150,SYN Flood,SYN Flood,True,True,SYN Flood,SYN Flood,5,"classify_flow,classify_flow,classify_flow,aggregate_classifiers",0.2333,17.2,,high
+4664,SYN Flood,SYN Flood,True,True,SYN Flood,SYN Flood,5,"classify_flow,classify_flow,classify_flow,aggregate_classifiers",0.2285,17.5,,high
+1884,Slowloris,Slowloris,True,True,Slowloris,Slowloris,5,"search_memory,classify_flow,classify_flow,aggregate_classifiers",0.2718,17.1,,high
+5759,Slowloris,Slowloris,True,True,Slowloris,Slowloris,4,"classify_flow,classify_flow,aggregate_classifiers",0.2461,14.1,,high
+5988,Slowloris,Slowloris,True,True,Slowloris,Slowloris,5,"classify_flow,classify_flow,search_memory,classify_flow",0.346,17.8,,high
+5466,Vulnerability Scan,Vulnerability Scan,True,True,Vulnerability Scan,Vulnerability Scan,5,"classify_flow,classify_flow,classify_flow,aggregate_classifiers",0.2377,16.6,,high
+169,Vulnerability Scan,Vulnerability Scan,True,True,Vulnerability Scan,Vulnerability Scan,4,"classify_flow,classify_flow,aggregate_classifiers",0.2425,14.0,,high
+5942,Vulnerability Scan,Vulnerability Scan,True,True,Vulnerability Scan,Vulnerability Scan,5,"classify_flow,classify_flow,classify_flow,aggregate_classifiers",0.2186,18.5,,high

@@ -1,0 +1,31 @@
+# data (raw is large; processed/splits are regenerable)
+data/raw/
+data/processed/
+data/splits/
+
+# python
+__pycache__/
+*.pyc
+.env
+.venv/
+
+# editor / IDE
+.idea/
+
+# local Claude Code settings (personal permission allowlist, not shared)
+.claude/settings.local.json
+
+# run logs (results CSV/JSON under experiments/ are kept)
+experiments/*/*.log
+
+# LaTeX build artifacts (paper/ source is kept; compiled output is not)
+paper/*.aux
+paper/*.log
+paper/*.bbl
+paper/*.blg
+paper/*.out
+paper/*.pdf
+paper/*.synctex.gz
+paper/*.toc
+paper/*.fls
+paper/*.fdb_latexmk

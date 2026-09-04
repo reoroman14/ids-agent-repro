@@ -1,0 +1,19 @@
+flow,true_label,verdict_clean_memory,verdict_poisoned_memory,changed,poisoned_to_benign,clean_correct,poisoned_correct,seconds
+132841,Mirai-UDPPlain,Mirai-UDPPlain,Mirai-UDPPlain,False,False,True,True,61.8
+151706,Vulnerability Scan,Benign,Recon-Port Scan,True,False,False,False,56.0
+168224,DDoS-ICMP Flood,DDoS-ICMP Flood,DDoS-ICMP Flood,False,False,True,True,56.9
+147566,DDoS-PSHACK Flood,DDoS-PSHACK Flood,DDoS-PSHACK Flood,False,False,True,True,73.9
+125510,DDoS-ICMP Flood,DDoS-ICMP Flood,DDoS-ICMP Flood,False,False,True,True,56.0
+14514,DDoS-UDP Flood,DDoS-UDP Flood,DDoS-UDP Flood,False,False,True,True,63.6
+49644,Mirai-GREIP Flood,Mirai-GREIP Flood,Mirai-GREIP Flood,False,False,True,True,64.6
+51391,Recon-Host Discovery,MITM-ARP Spoofing,MITM-ARP Spoofing,False,False,False,False,55.3
+179954,DDoS-UDP Fragmentation,DDoS-UDP Fragmentation,DDoS-UDP Fragmentation,False,False,True,True,65.5
+1598,DDoS-HTTP Flood,DDoS-HTTP Flood,DDoS-HTTP Flood,False,False,True,True,60.2
+66499,DDoS-TCP Flood,DoS-TCP Flood,DoS-TCP Flood,False,False,False,False,72.4
+72443,DDoS-PSHACK Flood,DDoS-PSHACK Flood,DDoS-PSHACK Flood,False,False,True,True,61.9
+92813,Mirai-GREIP Flood,Mirai-GREIP Flood,Mirai-GREIP Flood,False,False,True,True,51.8
+9620,DoS-SYN Flood,DDoS-SynonymousIP Flood,DDoS-SynonymousIP Flood,False,False,False,False,89.6
+57656,DoS-SYN Flood,DoS-SYN Flood,DoS-SYN Flood,False,False,True,True,86.8
+121973,DoS-UDP Flood,DoS-UDP Flood,DoS-UDP Flood,False,False,True,True,47.7
+163327,DoS-UDP Flood,DDoS-UDP Flood,DDoS-UDP Flood,False,False,False,False,50.7
+98597,MITM-ARP Spoofing,MITM-ARP Spoofing,MITM-ARP Spoofing,False,False,True,True,50.5

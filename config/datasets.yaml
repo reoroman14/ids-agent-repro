@@ -1,0 +1,333 @@
+# Dataset configuration for Phase 1 baseline reproduction.
+#
+# Every number below was measured from the local raw files, not taken from
+# dataset documentation. Regenerate with `python scripts/recount_labels.py`
+# if the raw data is ever re-downloaded or re-split.
+#
+# Label handling is deliberately explicit: raw labels are normalized to an
+# uppercase lookup key (`raw.strip().upper()`) and then mapped through
+# `label_map` to a canonical name. An unmapped key is a hard error, never a
+# silent pass-through — that is what stops an unnoticed 35th class from
+# entering the results.
+
+# ---------------------------------------------------------------------------
+# ACI-IoT-2023
+# ---------------------------------------------------------------------------
+aci_iot_2023:
+  raw_path: "data/raw/aci_iot_2023/"
+  files: ["ACI-IoT-2023.csv"]
+  processed_path: "data/processed/aci_iot_2023.parquet"
+
+  label_column: "Label"
+
+  # Measured 2026-09-01 from the local file.
+  n_columns_expected: 85          # 83 numeric features + Label + Connection Type
+  n_rows_expected: 1231411
+
+  # No cap: the full dataset is 1.23M rows (~409 MB as float32) and fits in
+  # memory comfortably. The cap exists to solve CIC's imbalance and memory
+  # problem; ACI has neither. Set an integer here to enable capping.
+  per_class_cap: null
+
+  # raw.strip().upper()  ->  canonical name
+  label_map:
+    "BENIGN": "Benign"
+    "PORT SCAN": "Port Scan"
+    "ICMP FLOOD": "ICMP Flood"
+    "PING SWEEP": "Ping Sweep"
+    "DNS FLOOD": "DNS Flood"
+    "VULNERABILITY SCAN": "Vulnerability Scan"
+    "OS SCAN": "OS Scan"
+    "SLOWLORIS": "Slowloris"
+    "SYN FLOOD": "SYN Flood"
+    "DICTIONARY ATTACK": "Dictionary Attack"
+    "UDP FLOOD": "UDP Flood"
+    "ARP SPOOFING": "ARP Spoofing"
+
+  # canonical name -> coarse group (drives label_group / label_binary)
+  label_groups:
+    "Benign": "Benign"
+    "Port Scan": "Recon"
+    "ICMP Flood": "DoS"
+    "Ping Sweep": "Recon"
+    "DNS Flood": "DoS"
+    "Vulnerability Scan": "Recon"
+    "OS Scan": "Recon"
+    "Slowloris": "DoS"
+    "SYN Flood": "DoS"
+    "Dictionary Attack": "Brute Force"
+    "UDP Flood": "DoS"
+    "ARP Spoofing": "Spoofing"
+
+  # Frozen encoding order. Pinned so label -> int is identical across runs and
+  # machines; do not reorder once results have been recorded.
+  class_order:
+    - "Benign"
+    - "ARP Spoofing"
+    - "DNS Flood"
+    - "Dictionary Attack"
+    - "ICMP Flood"
+    - "OS Scan"
+    - "Ping Sweep"
+    - "Port Scan"
+    - "SYN Flood"
+    - "Slowloris"
+    - "UDP Flood"
+    - "Vulnerability Scan"
+
+  # Measured row counts per canonical class. Used to validate the load and to
+  # report sampling rates; the loader warns if observed counts drift.
+  class_counts:
+    "Port Scan": 441282
+    "Benign": 329295
+    "ICMP Flood": 225234
+    "Ping Sweep": 71928
+    "DNS Flood": 46935
+    "Vulnerability Scan": 39537
+    "OS Scan": 37524
+    "Slowloris": 18643
+    "SYN Flood": 13857
+    "Dictionary Attack": 6380
+    "UDP Flood": 791
+    "ARP Spoofing": 5
+
+# ---------------------------------------------------------------------------
+# CIC-IoT-2023
+# ---------------------------------------------------------------------------
+cic_iot_2023:
+  raw_path: "data/raw/cic_iot_2023/"
+  file_glob: "Merged*.csv"
+  processed_path: "data/processed/cic_iot_2023.parquet"
+
+  label_column: "Label"
+
+  # Measured 2026-09-01 across all 63 files. Headers verified byte-identical.
+  n_files_expected: 63
+  n_columns_expected: 40          # 39 numeric features + Label
+  n_rows_expected: 45019243
+
+  # Nine files (42, 44, 46, 47, 48, 49, 50, 51, 52) end on a truncated final
+  # row — 9 malformed rows out of 45M. Verified against the source: the files
+  # are otherwise complete, and Merged51/Merged52 are genuinely smaller
+  # batches rather than partial downloads.
+  #
+  # Note on the mechanism: pandas PADS a short row with NaN rather than
+  # rejecting it, so `on_bad_lines` never fires for these. They arrive with a
+  # null Label and are dropped by the loader's null-label filter, which reports
+  # them as `rows_dropped_null_label` (confirmed: exactly 9 on a full pass).
+  # `on_bad_lines` still guards the other direction — rows with too many
+  # fields — which is why it is set rather than left at the default.
+  n_malformed_rows_expected: 9
+
+  # Take 100% of every class below the cap, downsample the 24 classes above it.
+  # Yields ~1,288,000 rows (24 caps + 88,479 tail rows) — comparable in size to
+  # ACI, which keeps the two baselines on similar footing.
+  # Set to null to stream all 45M rows for a final confirmation run.
+  per_class_cap: 50000
+
+  # raw.strip().upper()  ->  canonical name.
+  # These Merged files ship pre-uppercased; the original CIC release uses mixed
+  # case (DDoS-ICMP_Flood). Keying on the uppercased form handles both.
+  label_map:
+    "BENIGN": "Benign"
+    "DDOS-ICMP_FLOOD": "DDoS-ICMP Flood"
+    "DDOS-UDP_FLOOD": "DDoS-UDP Flood"
+    "DDOS-TCP_FLOOD": "DDoS-TCP Flood"
+    "DDOS-PSHACK_FLOOD": "DDoS-PSHACK Flood"
+    "DDOS-SYN_FLOOD": "DDoS-SYN Flood"
+    "DDOS-RSTFINFLOOD": "DDoS-RSTFIN Flood"
+    "DDOS-SYNONYMOUSIP_FLOOD": "DDoS-SynonymousIP Flood"
+    "DDOS-ICMP_FRAGMENTATION": "DDoS-ICMP Fragmentation"
+    "DDOS-UDP_FRAGMENTATION": "DDoS-UDP Fragmentation"
+    "DDOS-ACK_FRAGMENTATION": "DDoS-ACK Fragmentation"
+    "DDOS-HTTP_FLOOD": "DDoS-HTTP Flood"
+    "DDOS-SLOWLORIS": "DDoS-Slowloris"
+    "DOS-UDP_FLOOD": "DoS-UDP Flood"
+    "DOS-TCP_FLOOD": "DoS-TCP Flood"
+    "DOS-SYN_FLOOD": "DoS-SYN Flood"
+    "DOS-HTTP_FLOOD": "DoS-HTTP Flood"
+    "MIRAI-GREETH_FLOOD": "Mirai-GREETH Flood"
+    "MIRAI-UDPPLAIN": "Mirai-UDPPlain"
+    "MIRAI-GREIP_FLOOD": "Mirai-GREIP Flood"
+    "RECON-HOSTDISCOVERY": "Recon-Host Discovery"
+    "RECON-OSSCAN": "Recon-OS Scan"
+    "RECON-PORTSCAN": "Recon-Port Scan"
+    "RECON-PINGSWEEP": "Recon-Ping Sweep"
+    "VULNERABILITYSCAN": "Vulnerability Scan"
+    "MITM-ARPSPOOFING": "MITM-ARP Spoofing"
+    "DNS_SPOOFING": "DNS Spoofing"
+    "BROWSERHIJACKING": "Browser Hijacking"
+    "COMMANDINJECTION": "Command Injection"
+    "SQLINJECTION": "SQL Injection"
+    "XSS": "XSS"
+    "UPLOADING_ATTACK": "Uploading Attack"
+    "BACKDOOR_MALWARE": "Backdoor Malware"
+    "DICTIONARYBRUTEFORCE": "Dictionary Brute Force"
+
+  label_groups:
+    "Benign": "Benign"
+    "DDoS-ICMP Flood": "DDoS"
+    "DDoS-UDP Flood": "DDoS"
+    "DDoS-TCP Flood": "DDoS"
+    "DDoS-PSHACK Flood": "DDoS"
+    "DDoS-SYN Flood": "DDoS"
+    "DDoS-RSTFIN Flood": "DDoS"
+    "DDoS-SynonymousIP Flood": "DDoS"
+    "DDoS-ICMP Fragmentation": "DDoS"
+    "DDoS-UDP Fragmentation": "DDoS"
+    "DDoS-ACK Fragmentation": "DDoS"
+    "DDoS-HTTP Flood": "DDoS"
+    "DDoS-Slowloris": "DDoS"
+    "DoS-UDP Flood": "DoS"
+    "DoS-TCP Flood": "DoS"
+    "DoS-SYN Flood": "DoS"
+    "DoS-HTTP Flood": "DoS"
+    "Mirai-GREETH Flood": "Mirai"
+    "Mirai-UDPPlain": "Mirai"
+    "Mirai-GREIP Flood": "Mirai"
+    "Recon-Host Discovery": "Recon"
+    "Recon-OS Scan": "Recon"
+    "Recon-Port Scan": "Recon"
+    "Recon-Ping Sweep": "Recon"
+    "Vulnerability Scan": "Recon"
+    "MITM-ARP Spoofing": "Spoofing"
+    "DNS Spoofing": "Spoofing"
+    "Browser Hijacking": "Web"
+    "Command Injection": "Web"
+    "SQL Injection": "Web"
+    "XSS": "Web"
+    "Uploading Attack": "Web"
+    "Backdoor Malware": "Web"
+    "Dictionary Brute Force": "Brute Force"
+
+  # Frozen encoding order (alphabetical, Benign first). Do not reorder.
+  class_order:
+    - "Benign"
+    - "Backdoor Malware"
+    - "Browser Hijacking"
+    - "Command Injection"
+    - "DDoS-ACK Fragmentation"
+    - "DDoS-HTTP Flood"
+    - "DDoS-ICMP Flood"
+    - "DDoS-ICMP Fragmentation"
+    - "DDoS-PSHACK Flood"
+    - "DDoS-RSTFIN Flood"
+    - "DDoS-SYN Flood"
+    - "DDoS-Slowloris"
+    - "DDoS-SynonymousIP Flood"
+    - "DDoS-TCP Flood"
+    - "DDoS-UDP Flood"
+    - "DDoS-UDP Fragmentation"
+    - "DNS Spoofing"
+    - "Dictionary Brute Force"
+    - "DoS-HTTP Flood"
+    - "DoS-SYN Flood"
+    - "DoS-TCP Flood"
+    - "DoS-UDP Flood"
+    - "MITM-ARP Spoofing"
+    - "Mirai-GREETH Flood"
+    - "Mirai-GREIP Flood"
+    - "Mirai-UDPPlain"
+    - "Recon-Host Discovery"
+    - "Recon-OS Scan"
+    - "Recon-Ping Sweep"
+    - "Recon-Port Scan"
+    - "SQL Injection"
+    - "Uploading Attack"
+    - "Vulnerability Scan"
+    - "XSS"
+
+  # Measured across all 63 files. Imbalance ratio is 5,764:1
+  # (DDoS-ICMP Flood 6,893,259 vs Uploading Attack 1,196).
+  class_counts:
+    "DDoS-ICMP Flood": 6893259
+    "DDoS-UDP Flood": 5181027
+    "DDoS-TCP Flood": 4306086
+    "DDoS-PSHACK Flood": 3920372
+    "DDoS-SYN Flood": 3886130
+    "DDoS-RSTFIN Flood": 3872808
+    "DDoS-SynonymousIP Flood": 3445659
+    "DoS-UDP Flood": 3177323
+    "DoS-TCP Flood": 2558256
+    "DoS-SYN Flood": 1942176
+    "Benign": 1051373
+    "Mirai-GREETH Flood": 949381
+    "Mirai-UDPPlain": 852695
+    "Mirai-GREIP Flood": 719655
+    "DDoS-ICMP Fragmentation": 433157
+    "Vulnerability Scan": 357583
+    "MITM-ARP Spoofing": 294469
+    "DDoS-UDP Fragmentation": 274909
+    "DDoS-ACK Fragmentation": 272793
+    "DNS Spoofing": 171468
+    "Recon-Host Discovery": 128677
+    "Recon-OS Scan": 93970
+    "Recon-Port Scan": 78730
+    "DoS-HTTP Flood": 68799
+    "DDoS-HTTP Flood": 27597
+    "DDoS-Slowloris": 22400
+    "Dictionary Brute Force": 12522
+    "Browser Hijacking": 5630
+    "Command Injection": 5168
+    "SQL Injection": 5022
+    "XSS": 3705
+    "Backdoor Malware": 3078
+    "Recon-Ping Sweep": 2161
+    "Uploading Attack": 1196
+
+# ---------------------------------------------------------------------------
+# Splitting
+# ---------------------------------------------------------------------------
+split:
+  seed: 42                        # fixed seed for reproducibility vs original paper numbers
+  train_ratio: 0.7
+  val_ratio: 0.15
+  test_ratio: 0.15
+  stratify: true
+
+  # A class needs at least this many rows to be split three ways; below it the
+  # class goes entirely to train and is absent from val/test.
+  #
+  # This exists for ACI's "ARP Spoofing", which has 5 rows in 1.23M. A 70/15/15
+  # stratified split would give it 3/1/1 — unlearnable, and a single test row
+  # makes its per-class F1 pure noise. At 100 rows a class still gets ~15 test
+  # rows, which is the floor for a meaningful per-class score.
+  #
+  # Consequence to keep in mind when comparing to the paper: ACI trains on 12
+  # classes but is evaluated on 11. Reported macro-F1 is over the classes
+  # present in the test split. CIC is unaffected — its rarest class (Uploading
+  # Attack, 1,196) splits to 837/179/180.
+  min_rows_for_split: 100
+  rare_class_policy: "train_only"   # train_only | drop | error
+
+  # Zero-day evaluation hook (IDS-Agent reports ~0.61 zero-day recall).
+  # Classes listed here are removed from train and val but kept in test, so the
+  # model meets them for the first time at evaluation. Empty for the standard
+  # Phase 1 baseline. Wired in now so Phase 2/3 need no data-layer refactor.
+  holdout_classes: []
+
+# ---------------------------------------------------------------------------
+# Cleaning
+# ---------------------------------------------------------------------------
+cleaning:
+  # Infinities are a genuine artifact of rate columns divided by a zero
+  # duration, not a parse error. Measured over the full files:
+  #   ACI  Flow Bytes/s   915 inf + 1,009 NaN
+  #        Flow Packets/s 1,924 inf
+  #   CIC  Rate           inf present; Std / Variance carry real NaN
+  # Policy: inf -> NaN -> median impute, with the median fit on TRAIN ONLY and
+  # reused for val/test so no test statistics leak into preprocessing.
+  replace_inf_with_nan: true
+  impute_strategy: "median"
+  impute_fit_on: "train"
+
+  # Columns with a single distinct value across the entire file carry no
+  # signal. Measured over all 1,231,411 ACI rows (a 300k-row sample wrongly
+  # flags four more — Fwd URG Flags, URG/CWR/ECE Flag Count — which do vary
+  # later in the file, so this list must come from a full pass).
+  # No constant columns were found in CIC.
+  drop_zero_variance: true
+
+  # Rows whose field count does not match the header. See
+  # n_malformed_rows_expected above.
+  on_bad_lines: "warn"

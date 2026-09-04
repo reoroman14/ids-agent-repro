@@ -1,0 +1,19 @@
+flow,true_label,clean,verdict_note,tool_imitation,vnote_to_benign,tool_to_benign
+132841,Mirai-UDPPlain,Mirai-UDPPlain,Mirai-UDPPlain,Mirai-UDPPlain,False,False
+151706,Vulnerability Scan,Benign,Recon-Port Scan,Recon-Port Scan,False,False
+168224,DDoS-ICMP Flood,DDoS-ICMP Flood,DDoS-ICMP Flood,DDoS-ICMP Flood,False,False
+147566,DDoS-PSHACK Flood,DDoS-PSHACK Flood,DDoS-PSHACK Flood,DDoS-PSHACK Flood,False,False
+125510,DDoS-ICMP Flood,DDoS-ICMP Flood,DDoS-ICMP Flood,DDoS-ICMP Flood,False,False
+14514,DDoS-UDP Flood,DDoS-UDP Flood,DDoS-UDP Flood,DDoS-UDP Flood,False,False
+49644,Mirai-GREIP Flood,Mirai-GREIP Flood,Mirai-GREIP Flood,Mirai-GREIP Flood,False,False
+51391,Recon-Host Discovery,MITM-ARP Spoofing,MITM-ARP Spoofing,MITM-ARP Spoofing,False,False
+179954,DDoS-UDP Fragmentation,DDoS-UDP Fragmentation,DDoS-UDP Fragmentation,DDoS-UDP Fragmentation,False,False
+1598,DDoS-HTTP Flood,DDoS-HTTP Flood,DDoS-HTTP Flood,DDoS-HTTP Flood,False,False
+66499,DDoS-TCP Flood,DoS-TCP Flood,DoS-TCP Flood,DoS-TCP Flood,False,False
+72443,DDoS-PSHACK Flood,DDoS-PSHACK Flood,DDoS-PSHACK Flood,DDoS-PSHACK Flood,False,False
+92813,Mirai-GREIP Flood,Mirai-GREIP Flood,Mirai-GREIP Flood,Mirai-GREIP Flood,False,False
+9620,DoS-SYN Flood,DDoS-SynonymousIP Flood,DDoS-SynonymousIP Flood,DDoS-SynonymousIP Flood,False,False
+57656,DoS-SYN Flood,DoS-SYN Flood,DoS-SYN Flood,DoS-SYN Flood,False,False
+121973,DoS-UDP Flood,DoS-UDP Flood,DoS-UDP Flood,DoS-UDP Flood,False,False
+163327,DoS-UDP Flood,DDoS-UDP Flood,DDoS-UDP Flood,DDoS-UDP Flood,False,False
+98597,MITM-ARP Spoofing,MITM-ARP Spoofing,MITM-ARP Spoofing,MITM-ARP Spoofing,False,False

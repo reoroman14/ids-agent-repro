@@ -1,0 +1,96 @@
+# Classifier hyperparameters — Phase 1 baseline
+# Defaults below are placeholders; tune to match original IDS-Agent reported F1/recall
+
+# Numeric preprocessing. Everything here is fitted on the TRAIN split only and
+# reused unchanged for val and test, per `impute_fit_on: train` in
+# config/datasets.yaml.
+#
+# The scaler choice is decisive for knn / svm / mlp / logistic_regression and
+# irrelevant to random_forest / decision_tree, which are scale-invariant. Both
+# families are reported from the same splits, so this is set once here rather
+# than per classifier.
+preprocessing:
+  # standard | minmax | robust | none
+  #   standard  zero mean, unit variance (default)
+  #   robust    median / IQR — worth trying, since Flow Duration, the Idle*
+  #             group and the packet-count features are heavily tailed and
+  #             leave standard-scaled outliers far from the bulk
+  scaler: "standard"
+
+  # One-hot columns (ACI's Connection Type) are already 0/1 and are left
+  # unscaled by default so their encoding stays interpretable.
+  scale_one_hot: false
+
+# Execution controls for run_all(). These are NOT sklearn parameters — they are
+# kept out of the per-classifier blocks below so that any unknown key there can
+# be rejected as a typo.
+training:
+  n_jobs: -1
+
+  # Which classifiers run when none are named explicitly.
+  classifiers:
+    - random_forest
+    - knn
+    - logistic_regression
+    - decision_tree
+    - mlp
+    - svm
+
+  # Per-classifier training-set caps, applied by stratified subsampling with
+  # the split seed. Only two classifiers need one, and both for structural
+  # reasons rather than impatience:
+  #
+  #   svm  kernel SVC is between quadratic and cubic in training rows and is
+  #        single-threaded. At ~900k rows it does not finish in any useful
+  #        time; 50k keeps it to minutes.
+  #   knn  stores every training row and compares each test row against all of
+  #        them. With 75 features no tree index helps, so predict cost is
+  #        n_train x n_test.
+  #
+  # A cap changes what the model saw, so run_all() reports `n_train_used` for
+  # every classifier and flags any row that was subsampled. Set a value to null
+  # to train on the full split.
+  max_train_rows:
+    svm: 50000
+    knn: 200000
+
+random_forest:
+  n_estimators: 200
+  max_depth: null
+
+knn:
+  n_neighbors: 5
+
+logistic_regression:
+  max_iter: 1000
+
+decision_tree:
+  max_depth: null
+
+mlp:
+  hidden_layer_sizes: [128, 64]
+  # Lowered from 300 on 2026-09-02 after measuring the trade-off on CIC.
+  #
+  # The two datasets behave differently: on ACI the network converges on its
+  # own tolerance well before the ceiling, so this value is not binding there.
+  # On CIC it never converges and runs to whatever limit it is given, which is
+  # what made 300 the single most expensive step in the whole sweep.
+  #
+  # Measured on 60k CIC rows across 34 classes:
+  #   max_iter=300  172s  weighted F1 0.7120  macro F1 0.5946   (~43 min full)
+  #   max_iter=100   55s  weighted F1 0.7049  macro F1 0.5954   (~14 min full)
+  #   max_iter=50    26s  weighted F1 0.6998  macro F1 0.5876   (~6.5 min full)
+  #   early_stopping 20s  weighted F1 0.6925  macro F1 0.5743   (~5 min full)
+  #
+  # 100 buys back ~29 minutes for 0.007 weighted F1, and macro F1 is very
+  # slightly better. early_stopping halts at 41 iterations and costs three
+  # times as much accuracy for barely more saving, so it was rejected.
+  #
+  # Expect the accuracy cost to shrink rather than grow at full scale: an
+  # epoch over 901k rows contains 15x more gradient updates than over the 60k
+  # used for this measurement.
+  max_iter: 100
+
+svm:
+  kernel: "rbf"
+  C: 1.0

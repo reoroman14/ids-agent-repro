@@ -1,0 +1,5 @@
+dataset,holdout,auc,recall_at_fpr_0.001,recall_at_fpr_0.01,recall_at_fpr_0.05,recall_at_fpr_0.1,fpr_for_recall_0.61,seconds
+aci_iot_2023,Slowloris [one class],0.9984,0.3936,0.9742,0.9999,0.9999,0.0011,99
+aci_iot_2023,DoS family [5 classes],0.5941,0.0506,0.0652,0.246,0.2762,0.515,64
+cic_iot_2023,DDoS-ICMP Flood [one class],0.9964,0.0618,0.9985,1.0,1.0,0.004,135
+cic_iot_2023,Recon family [5 classes],0.854,0.0034,0.1269,0.4594,0.6176,0.097,108

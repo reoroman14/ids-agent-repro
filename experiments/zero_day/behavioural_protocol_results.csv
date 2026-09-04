@@ -1,0 +1,10 @@
+dataset,regime,holdout,members,n_classes,nearest_remaining_distance,auc,fixed_threshold_recall,recall_at_fpr_0.01,seconds
+aci_iot_2023,behavioural-cluster,B1 (4),"OS Scan, Ping Sweep, Port Scan, Vulnerability Scan",4,4.572928392181018,0.8529469640979916,0.0,0.0200261384177776,72
+aci_iot_2023,behavioural-cluster,B2 (3),"Dictionary Attack, SYN Flood, Slowloris",3,4.572928392181018,0.982171121912591,0.003832304526748971,0.45825617283950615,109
+aci_iot_2023,behavioural-cluster,B3 (2),"DNS Flood, UDP Flood",2,4.889431791846914,0.4834313791547301,0.0,0.002975317437036416,100
+aci_iot_2023,behavioural-cluster,B4 (1),ICMP Flood,1,6.562668607196269,0.6309148245444663,0.0,0.006824014136409246,89
+cic_iot_2023,behavioural-cluster,B1 (14),"Backdoor Malware, Browser Hijacking, Command Injection, DNS Spoofing, Dictionary Brute Force, MITM-ARP Spoofing, Recon-Host Discovery, Recon-OS Scan, Recon-Ping Sweep, Recon-Port Scan, SQL Injection, Uploading Attack, Vulnerability Scan, XSS",14,3.5820430709624844,0.725824108311081,0.028663955637707947,0.34300959548594223,94
+cic_iot_2023,behavioural-cluster,B2 (11),"DDoS-ACK Fragmentation, DDoS-ICMP Flood, DDoS-ICMP Fragmentation, DDoS-TCP Flood, DDoS-UDP Flood, DDoS-UDP Fragmentation, DoS-TCP Flood, DoS-UDP Flood, Mirai-GREETH Flood, Mirai-GREIP Flood, Mirai-UDPPlain",11,3.5820430709624844,0.9894494100931933,0.9999981818214876,0.586471970585722,96
+cic_iot_2023,behavioural-cluster,B3 (3),"DDoS-SYN Flood, DDoS-SynonymousIP Flood, DoS-SYN Flood",3,4.117454489203547,0.9990523779713812,1.0,0.9999654216518561,147
+cic_iot_2023,behavioural-cluster,B4 (4),"DDoS-HTTP Flood, DDoS-PSHACK Flood, DDoS-Slowloris, DoS-HTTP Flood",4,4.122493478842827,0.993046081734799,0.9999068250640578,0.6732120728095571,138
+cic_iot_2023,behavioural-cluster,B5 (1),DDoS-RSTFIN Flood,1,9.671901704102684,0.998705677950727,1.0,0.999679833171915,154

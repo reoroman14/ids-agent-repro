@@ -1,0 +1,290 @@
+{
+  "n_samples": 184711,
+  "accuracy": 0.9951166958112944,
+  "balanced_accuracy": 0.9509912885724866,
+  "macro_precision": 0.885232973697274,
+  "macro_recall": 0.8717420145247794,
+  "macro_f1": 0.8768162371760874,
+  "weighted_precision": 0.995189632364876,
+  "weighted_recall": 0.9951166958112944,
+  "weighted_f1": 0.9951018331845312,
+  "micro_precision": 0.9951166958112944,
+  "micro_recall": 0.9951166958112944,
+  "micro_f1": 0.9951166958112944,
+  "per_class": {
+    "Benign": {
+      "precision": 0.9969295013510194,
+      "recall": 0.9859902012390169,
+      "f1": 0.9914296765262708,
+      "support": 49394
+    },
+    "ARP Spoofing": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 0
+    },
+    "DNS Flood": {
+      "precision": 0.9953304089429744,
+      "recall": 0.9991477272727273,
+      "f1": 0.9972354150421776,
+      "support": 7040
+    },
+    "Dictionary Attack": {
+      "precision": 0.9815195071868583,
+      "recall": 0.9989550679205852,
+      "f1": 0.9901605385810461,
+      "support": 957
+    },
+    "ICMP Flood": {
+      "precision": 0.9992309512541411,
+      "recall": 0.9999112031966849,
+      "f1": 0.9995709614900952,
+      "support": 33785
+    },
+    "OS Scan": {
+      "precision": 0.9939854944277375,
+      "recall": 0.998223485521407,
+      "f1": 0.9960999822726467,
+      "support": 5629
+    },
+    "Ping Sweep": {
+      "precision": 0.9506063556696468,
+      "recall": 0.995365650199277,
+      "f1": 0.9724712487548673,
+      "support": 10789
+    },
+    "Port Scan": {
+      "precision": 0.999229572337115,
+      "recall": 0.9992899551312072,
+      "f1": 0.9992597628219654,
+      "support": 66193
+    },
+    "SYN Flood": {
+      "precision": 1.0,
+      "recall": 0.9975949975949976,
+      "f1": 0.9987960510474356,
+      "support": 2079
+    },
+    "Slowloris": {
+      "precision": 1.0,
+      "recall": 0.9992849481587415,
+      "f1": 0.9996423462088698,
+      "support": 2797
+    },
+    "UDP Flood": {
+      "precision": 0.7073170731707317,
+      "recall": 0.4915254237288136,
+      "f1": 0.58,
+      "support": 118
+    },
+    "Vulnerability Scan": {
+      "precision": 0.9986468200270636,
+      "recall": 0.9956155143338955,
+      "f1": 0.9971288633676744,
+      "support": 5930
+    }
+  },
+  "macro_f1_present_only": 0.9565268041920955,
+  "macro_recall_present_only": 0.9509912885724866,
+  "n_classes_present": 11,
+  "n_classes_total": 12,
+  "benign_false_positive_rate": 0.014009798760983115,
+  "attack_detection_rate": 0.9988914918302948,
+  "confusion_matrix": [
+    [
+      48702,
+      0,
+      17,
+      18,
+      26,
+      7,
+      557,
+      40,
+      0,
+      0,
+      21,
+      6
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      3,
+      0,
+      7034,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      3,
+      0
+    ],
+    [
+      1,
+      0,
+      0,
+      956,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      3,
+      0,
+      0,
+      0,
+      33782,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      2,
+      0,
+      0,
+      0,
+      0,
+      5619,
+      0,
+      8,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      49,
+      0,
+      0,
+      0,
+      0,
+      0,
+      10739,
+      1,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      20,
+      0,
+      0,
+      0,
+      0,
+      25,
+      0,
+      66146,
+      0,
+      0,
+      0,
+      2
+    ],
+    [
+      5,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      2074,
+      0,
+      0,
+      0
+    ],
+    [
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      2795,
+      0,
+      0
+    ],
+    [
+      44,
+      0,
+      16,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      58,
+      0
+    ],
+    [
+      21,
+      0,
+      0,
+      0,
+      0,
+      2,
+      1,
+      2,
+      0,
+      0,
+      0,
+      5904
+    ]
+  ],
+  "confusion_labels": [
+    "Benign",
+    "ARP Spoofing",
+    "DNS Flood",
+    "Dictionary Attack",
+    "ICMP Flood",
+    "OS Scan",
+    "Ping Sweep",
+    "Port Scan",
+    "SYN Flood",
+    "Slowloris",
+    "UDP Flood",
+    "Vulnerability Scan"
+  ],
+  "predict_seconds": 0.28032469749450684,
+  "score_kind": "proba",
+  "fit_info": {
+    "classifier": "mlp",
+    "n_train_available": 861989,
+    "n_train_used": 861989,
+    "subsampled": false,
+    "max_train_rows": null,
+    "fit_seconds": 802.8503863811493,
+    "seed": 42,
+    "classes_seen": 12
+  }
+}

@@ -1,0 +1,11 @@
+# Phase 1 dependencies — pin versions once environment is finalized
+pandas
+numpy
+scikit-learn
+pyyaml
+pyarrow             # parquet engine for data/processed/*.parquet cache
+faiss-cpu
+# chromadb          # alternative to faiss-cpu, uncomment if used instead
+requests            # for Ollama HTTP API
+openai              # optional, for GPT-4o-mini comparison runs
+pytest

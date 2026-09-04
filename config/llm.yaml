@@ -1,0 +1,12 @@
+# LLM backend configuration — no secrets stored here
+# API keys should come from environment variables, never hardcoded
+
+backend: "ollama"    # options: "ollama" | "openai"
+
+ollama:
+  model: "llama3"    # alt: "qwen2.5"
+  host: "http://localhost:11434"
+
+openai:
+  model: "gpt-4o-mini"
+  # api_key read from OPENAI_API_KEY environment variable
