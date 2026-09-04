@@ -1,9 +1,16 @@
-# ids-agent-repro — Phase 1: Baseline Reproduction
+# ids-agent-repro — LLM-Agent NIDS: Reproduction & Adversarial Studies
+
+![Phase 1: Reproduction](https://img.shields.io/badge/Phase%201%20Reproduction-complete-brightgreen)
+![Phase 2: Attacks](https://img.shields.io/badge/Phase%202%20Attacks-complete-brightgreen)
+![Phase 3: Memory Poisoning](https://img.shields.io/badge/Phase%203%20Memory%20Poisoning-complete-brightgreen)
 
 Simplified reproduction of IDS-Agent (Li, Xiang, Bastian, Song, Bo Li —
 NeurIPS 2024 Workshop on Open-World Agents) as the base system for a
 Q1 SCIE-targeted paper on adversarial robustness of LLM-based network
-intrusion-detection agents.
+intrusion-detection agents. All three phases are complete: Phase 1 reproduces
+the baseline, Phase 2 studies feature-space evasion and telemetry prompt
+injection, and Phase 3 studies cross-session memory poisoning. See
+`PROGRESS.md` for the full decision log and results.
 
 ## Phase 1 goal
 Reproduce a baseline matching the original paper's reported numbers:
