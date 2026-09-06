@@ -18,14 +18,9 @@ __pycache__/
 # run logs (results CSV/JSON under experiments/ are kept)
 experiments/*/*.log
 
-# LaTeX build artifacts (paper/ source is kept; compiled output is not)
-paper/*.aux
-paper/*.log
-paper/*.bbl
-paper/*.blg
-paper/*.out
-paper/*.pdf
-paper/*.synctex.gz
-paper/*.toc
-paper/*.fls
-paper/*.fdb_latexmk
+# paper/ is not tracked here at all: the LaTeX source lives on Overleaf and on
+# disk, and this repo carries only the code, configuration and experiment
+# records. This replaces the earlier rules that ignored only the LaTeX build
+# artifacts while keeping the source. Note that paper/ still exists in the
+# history of commits up to an earlier commit; untracking it does not remove it from there.
+paper/
