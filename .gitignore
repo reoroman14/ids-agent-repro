@@ -21,6 +21,7 @@ experiments/*/*.log
 # paper/ is not tracked here at all: the LaTeX source lives on Overleaf and on
 # disk, and this repo carries only the code, configuration and experiment
 # records. This replaces the earlier rules that ignored only the LaTeX build
-# artifacts while keeping the source. Note that paper/ still exists in the
-# history of commits up to an earlier commit; untracking it does not remove it from there.
+# artifacts while keeping the source. The directory was additionally purged
+# from the whole commit history on 2026-09-06, so no paper/ path exists in any
+# commit; every SHA from the initial commit onward was rewritten as a result.
 paper/
